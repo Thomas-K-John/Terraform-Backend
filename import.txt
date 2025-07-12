@@ -1,0 +1,19 @@
+# import.sh - Imports existing backend resources into Terraform state
+
+echo "Initializing Terraform..."
+terraform init
+
+echo "Importing DynamoDB Table for locking..."
+terraform import aws_dynamodb_table.terraform-lock "terraform-lock"
+
+echo "Importing S3 bucket..."
+terraform import aws_s3_bucket.state_bucket "thomaskjohn-state-backend"
+
+echo "Importing S3 encryption configuration..."
+terraform import aws_s3_bucket_server_side_encryption_configuration.s3_encryption "thomaskjohn-state-backend"
+
+echo "Importing S3 versioning configuration..."
+terraform import aws_s3_bucket_versioning.s3_versioning "thomaskjohn-state-backend"
+
+echo "📋 Running terraform plan to verify imports..."
+terraform plan
