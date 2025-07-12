@@ -3,9 +3,6 @@
 # Initializing Terraform
 terraform init
 
-# Importing DynamoDB Table for locking
-terraform import aws_dynamodb_table.terraform-lock "terraform-lock"
-
 # Importing S3 bucket
 terraform import aws_s3_bucket.state_bucket "thomaskjohn-state-backend"
 
